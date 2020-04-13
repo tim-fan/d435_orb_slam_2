@@ -22,5 +22,8 @@ wstool update -t ${SRC_DIR}
 wstool merge ${SRC_DIR}/d435_orb_slam/dependencies.rosinstall -t ${SRC_DIR}
 wstool update -t ${SRC_DIR}
 
+#install ros deps
+rosdep install --from-paths ${SRC_DIR} --ignore-src -y
+
 #build
 catkin build -w ${WS_DIR}
