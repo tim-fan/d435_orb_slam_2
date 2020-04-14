@@ -11,6 +11,7 @@ Stereo mode is recommended as it seems to perform much better than rgbd mode - i
 ```{bash}
 curl https://raw.githubusercontent.com/tim-fan/d435_orb_slam/master/setup.sh | bash
 ```
+This will create a catkin workspace with all dependent packages. See [setup.sh](setup.sh) for details.
 
 ### Run:
 ```
