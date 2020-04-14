@@ -18,12 +18,12 @@
         <node pkg="rosbag" type="play" name="bag_play" args="$(arg input_log_file)"/>
     </group>
 
-    <include file="$(find d435_orb_slam)/launch/orb_slam2_d435_rgbd.launch">
+    <include file="$(find d435_orb_slam_2)/launch/orb_slam2_d435_rgbd.launch">
         <arg name="load_map" value="$(arg load_map)" />
         <arg name="map_file" value="$(arg map_file)" />
     </include>
 
     <node if="$(arg record_log)" name="logging" pkg="rosbag" type="record" args="-o /tmp/d435_rgbd_log /camera/color/image_raw /camera/aligned_depth_to_color/image_raw /camera/color/camera_info"/>
 
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find d435_orb_slam)/cfg/slam.rviz" respawn="true"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find d435_orb_slam_2)/cfg/slam.rviz" respawn="true"/>
 </launch>
