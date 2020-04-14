@@ -7,13 +7,13 @@
 set -o errexit
 
 WS_DIR="./catkin_ws"
-ROS_VERSION="kinetic"
+ROS_DISTRO="kinetic"
 SRC_DIR=${WS_DIR}/src
 mkdir -p ${SRC_DIR}
 
 #create catkin workspace
 catkin init -w ${WS_DIR}
-catkin config --extend /opt/ros/${ROS_VERSION} -w ${WS_DIR}
+catkin config --extend /opt/ros/${ROS_DISTRO} -w ${WS_DIR}
 
 #use wstool to clone source packages
 wstool init ${SRC_DIR}
@@ -23,7 +23,7 @@ wstool merge ${SRC_DIR}/d435_orb_slam/dependencies.rosinstall -t ${SRC_DIR}
 wstool update -t ${SRC_DIR}
 
 #install ros deps
-rosdep install --from-paths ${SRC_DIR} --ignore-src -y
+rosdep install --from-paths ${SRC_DIR} --ignore-src -y --rosdistro ${ROS_DISTRO}
 
 #build
 catkin build -w ${WS_DIR}
