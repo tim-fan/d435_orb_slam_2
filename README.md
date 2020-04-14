@@ -25,3 +25,8 @@ roslaunch d435_orb_slam_2 slam_stereo.launch
 
 Optional arguments allow for logging, playback, map loading and running in localisation only mode.
 See `roslaunch d435_orb_slam_2 slam_stereo.launch --ros-args` 
+
+### ToDo:
+ * Tuning/testing - I'm not sure if I'm using optimal parameters for orb slam with the d435 camera (haven't tested much)
+ * Map rotation - would like to post process the map to make the floor flat on the z=0 plane, and walls line up with the x/y axes.
+ * Odom fusion - the intended use for this is on an [office robot](https://github.com/tim-fan/office_bot). For this use-case it would be good to fuse with odometry to handle situations when orb slam loses tracking. I imagine the [robot_localization](https://github.com/cra-ros-pkg/robot_localization) should work for this purpose, or perhaps [fuse](https://github.com/locusrobotics/fuse).
