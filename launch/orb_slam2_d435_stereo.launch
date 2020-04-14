@@ -3,20 +3,19 @@
   <arg name="map_file" default="map.bin" doc="initial map to load, if 'load_map' is set true"/>
   <arg name="localize_only" default="false" doc="run orb_slam2 in localization mode"/>
   <node name="orb_slam2" pkg="orb_slam2_ros"
-      type="orb_slam2_ros_rgbd" output="screen" respawn="true">
+      type="orb_slam2_ros_stereo" output="screen" respawn="true">
 
-       <remap from="/camera/rgb/image_raw" to="/camera/color/image_raw" />
-       <remap from="/camera/rgb/camera_info" to="/camera/color/camera_info"/>
-       <remap from="/camera/depth_registered/image_raw" to="/camera/aligned_depth_to_color/image_raw" />
-       
+       <remap from="image_left/image_color_rect" to="camera/infra1/image_rect_raw" />
+       <remap from="image_right/image_color_rect" to="camera/infra2/image_rect_raw" />
+
        <param name="publish_pointcloud" type="bool" value="true" />
        <param name="publish_pose" type="bool" value="true" />
        <param name="localize_only" type="bool" value="$(arg localize_only)" />
        <param name="reset_map" type="bool" value="false" />
 
        <!-- static parameters -->
-       <param name="load_map" type="bool" value="false" />
-       <param name="map_file" type="string" value="map.bin" />
+       <param name="load_map" type="bool" value="$(arg load_map)" />
+       <param name="map_file" type="string" value="$(arg map_file)" />
        <param name="voc_file" type="string" value="$(find orb_slam2_ros)/orb_slam2/Vocabulary/ORBvoc.txt" />
 
        <param name="pointcloud_frame_id" type="string" value="map" />
@@ -24,7 +23,7 @@
        <param name="min_num_kf_in_map" type="int" value="5" />
 
        <!-- ORB parameters -->
-       <param name="/ORBextractor/nFeatures" type="int" value="1000" />
+       <param name="/ORBextractor/nFeatures" type="int" value="1200" />
        <param name="/ORBextractor/scaleFactor" type="double" value="1.2" />
        <param name="/ORBextractor/nLevels" type="int" value="8" />
        <param name="/ORBextractor/iniThFAST" type="int" value="20" />
@@ -43,20 +42,18 @@
         <!-- Camera calibration parameters -->
         <!--If the node should wait for a camera_info topic to take the camera calibration data-->
        <param name="load_calibration_from_cam" type="bool" value="false" />
-
        <!-- Camera calibration and distortion parameters (OpenCV) -->
-      <param name="camera_fx" type="double" value="610.717" />
-      <param name="camera_fy" type="double" value="610.677" />
-      <param name="camera_cx" type="double" value="326.34" />
-      <param name="camera_cy" type="double" value="236.437" />
+      <param name="camera_fx" type="double" value="385.583984375" />
+      <param name="camera_fy" type="double" value="385.583984375" />
+      <param name="camera_cx" type="double" value="324.68218994140625" />
+      <param name="camera_cy" type="double" value="243.8158416748047" />
        <!-- Camera calibration and distortion parameters (OpenCV) -->
       <param name="camera_k1" type="double" value="0.0" />
       <param name="camera_k2" type="double" value="0.0" />
+      <param name="camera_k3" type="double" value="0.0" />
       <param name="camera_p1" type="double" value="0.0" />
       <param name="camera_p2" type="double" value="0.0" />
-      <param name="camera_k3" type="double" value="0.0" />
       <!-- IR projector baseline times fx (aprox.) -->
-      <param name="camera_baseline" type="double" value="9.052" />
-
+      <param name="camera_baseline" type="double" value="19.25" />
   </node>
 </launch>
