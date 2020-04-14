@@ -2,6 +2,8 @@
 
 ROS package for running [orb_slam_2_ros](https://github.com/appliedAI-Initiative/orb_slam_2_ros) with a [Realsense D435 RGBD camera](https://www.intelrealsense.com/depth-camera-d435/s).
 
+Package also includes launch file for optionally running [voxblox](https://github.com/ethz-asl/voxblox) mapping. 
+
 Launch files are provided for both stereo and rgbd slam modes. (`slam_stereo.launch` and `slam_rgbd.launch` respectively). 
 Stereo mode is recommended as it seems to perform much better than rgbd mode - feature depth estimates in rgbd mode appear very noisy (at least with the current configuration).
 
