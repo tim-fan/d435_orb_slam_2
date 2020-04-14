@@ -17,7 +17,7 @@ sudo apt install python-wstool python-catkin-tools ros-kinetic-cmake-modules pro
 #create catkin workspace
 catkin init -w ${WS_DIR}
 catkin config --extend /opt/ros/${ROS_DISTRO} -w ${WS_DIR}
-catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release -w ${WS_DIR}
+catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release -- -w ${WS_DIR}
 catkin config --merge-devel -w ${WS_DIR}
 
 #use wstool to clone source packages
